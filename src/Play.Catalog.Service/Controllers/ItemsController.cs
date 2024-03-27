@@ -10,7 +10,7 @@ namespace Play.Catalog.Service.Controllers
     public class ItemsController : ControllerBase
     {
 
-        private readonly ItemsRepository itemsRepository = new();
+        private readonly IRepository<Item> itemsRepository;
 
         // private static readonly List<ItemDto> items = new()
         // {
@@ -19,6 +19,10 @@ namespace Play.Catalog.Service.Controllers
         //     new ItemDto(Guid.NewGuid(), "Bronze Sword", "Deals a small amound of damage", 20, DateTimeOffset.UtcNow),
         // };
 
+        public ItemsController(IRepository<Item> itemRepository)
+        {
+            this.itemsRepository = itemRepository;
+        }
 
         [HttpGet]
         public async Task<IEnumerable<ItemDto>> Get()
@@ -57,7 +61,7 @@ namespace Play.Catalog.Service.Controllers
         {
             var existingItem = await itemsRepository.GetAsync(id);
 
-            if(existingItem == null)
+            if (existingItem == null)
             {
                 return NotFound();
             }
