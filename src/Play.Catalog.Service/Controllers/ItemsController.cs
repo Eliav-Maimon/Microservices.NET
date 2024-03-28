@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Play.Catalog.Service.Entities;
-using Play.Catalog.Service.Repositories;
+using Play.Common;
+
 
 namespace Play.Catalog.Service.Controllers
 {
@@ -9,15 +10,7 @@ namespace Play.Catalog.Service.Controllers
     [Route("api/[controller]")]
     public class ItemsController : ControllerBase
     {
-
         private readonly IRepository<Item> itemsRepository;
-
-        // private static readonly List<ItemDto> items = new()
-        // {
-        //     new ItemDto(Guid.NewGuid(), "Potion", "Restores a small amount of HP", 5, DateTimeOffset.UtcNow),
-        //     new ItemDto(Guid.NewGuid(), "Antidote", "Cures Posion", 7, DateTimeOffset.UtcNow),
-        //     new ItemDto(Guid.NewGuid(), "Bronze Sword", "Deals a small amound of damage", 20, DateTimeOffset.UtcNow),
-        // };
 
         public ItemsController(IRepository<Item> itemRepository)
         {
